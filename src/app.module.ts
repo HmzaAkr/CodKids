@@ -15,7 +15,7 @@ import { AppConfig } from './config/app.config';
       cache: true 
     }),
     AuthModule,
-    MongooseModule.forRootAsync(DatabaseConfig),
+    MongooseModule.forRoot(process.env.DB_URI),
   ],
   controllers: [AppController],
   providers: [AppService],
