@@ -7,6 +7,7 @@ import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import { SignupDto } from './dto/signup.dto';
 import { LoginDto } from './dto/login.dto';
+import { SignupEnum } from 'src/shared/enum/signup.enum';
 
 @Injectable()
 export class AuthService {
@@ -31,6 +32,8 @@ export class AuthService {
         email,
         password,
         mobileNumber,
+        role: SignupEnum.parent,
+        children: [],
       });
 
       await newUser.save();

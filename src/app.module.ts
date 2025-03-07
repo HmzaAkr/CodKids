@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { DatabaseConfig } from './config/database.config';
 import { ConfigModule } from '@nestjs/config';
 import { AppConfig } from './config/app.config';
+import { SignupChildModule } from './modules/signup-child/signup-child.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { AppConfig } from './config/app.config';
     }),
     AuthModule,
     MongooseModule.forRoot(process.env.DB_URI),
+    SignupChildModule
   ],
   controllers: [AppController],
   providers: [AppService],
