@@ -12,7 +12,7 @@ async function bootstrap() {
     .addTag('Cod Kids')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('docs', app, document); // or 'swagger'
 
   await app.listen(3000);
 }
