@@ -4,9 +4,8 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import * as express from 'express';
 
-const server = express();
-
-async function createApp() {
+async function bootstrap() {
+  const server = express();
   const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
 
   const config = new DocumentBuilder()
@@ -15,13 +14,10 @@ async function createApp() {
     .setVersion('1.0')
     .addTag('Cod Kids')
     .build();
-
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, document); // accessible at /docs
+  SwaggerModule.setup('docs', app, document); // mount at /docs
 
   await app.init();
+  return server;
 }
-
-createApp();
-
-export default server; // 👈 This is what Vercel uses
+export default bootstrap();
